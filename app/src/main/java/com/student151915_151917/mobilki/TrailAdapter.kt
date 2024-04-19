@@ -20,7 +20,7 @@ class TrailAdapter(private val trails: List<Trail>) : RecyclerView.Adapter<Trail
     override fun onBindViewHolder(holder: TrailViewHolder, position: Int) {
         val trail = trails[position]
         holder.name.text = trail.name
-        holder.length.text = trail.length
+        holder.length.text = trail.length.toString()
         holder.difficulty.text = trail.difficulty
     }
     class TrailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
