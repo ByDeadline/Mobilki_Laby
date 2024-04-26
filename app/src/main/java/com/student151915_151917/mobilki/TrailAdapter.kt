@@ -22,7 +22,7 @@ class TrailAdapter(private val trails: List<Trail>) : RecyclerView.Adapter<Trail
         val trail = trails[position]
         holder.name.text = trail.name
         holder.length.text = trail.length.toString()
-        holder.difficulty.text = trail.difficulty
+        holder.difficulty.text = trail.getTrailDifficulty(trail.difficulty)
     }
     class TrailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.TrailName)
