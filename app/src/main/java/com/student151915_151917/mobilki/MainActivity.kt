@@ -1,5 +1,6 @@
 package com.student151915_151917.mobilki
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -50,8 +51,13 @@ class MainActivity : AppCompatActivity() {
         }
         val trailsRecyclerView = Constants.getTrails()
         println(trailsRecyclerView)
-        val adapter = TrailAdapter(trailsRecyclerView)
+        val adapter = TrailAdapter(trailsRecyclerView,::trailOnClick)
         binding.trailsList.adapter = adapter
         binding.trailsList.layoutManager = LinearLayoutManager(applicationContext)
+    }
+    private fun trailOnClick(trail : Trail){
+        val intent = Intent(applicationContext,TrailView::class.java)
+        intent.putExtra("trail",trail)
+        startActivity(intent)
     }
 }

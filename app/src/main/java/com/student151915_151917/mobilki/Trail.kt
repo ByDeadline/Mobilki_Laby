@@ -1,6 +1,8 @@
 package com.student151915_151917.mobilki
 
-class Trail(val name: String, val length: Double, val difficulty: TrailDifficulty, val description: String) {
+import java.io.Serializable
+
+class Trail(val name: String, val length: Double, val difficulty: TrailDifficulty, val description: String) : Serializable {
 
     private val trialDifficultyMap = mapOf(
         TrailDifficulty.Easy to "easy",
