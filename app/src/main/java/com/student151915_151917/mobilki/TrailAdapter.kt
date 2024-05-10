@@ -22,7 +22,7 @@ class TrailAdapter(private val trails: List<Trail>, private val onItemClicked: (
         val trail = trails[position]
         holder.name.text = trail.name
         holder.length.text = trail.length.toString()
-        holder.difficulty.text = trail.getTrailDifficulty(trail.difficulty)
+        holder.difficulty.text = trail.getTrailDifficulty()
         holder.itemView.setOnClickListener {
             onItemClicked(trail)
             }

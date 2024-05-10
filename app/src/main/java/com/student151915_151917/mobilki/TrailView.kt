@@ -32,7 +32,7 @@ class TrailView : AppCompatActivity() {
         this.trail = intent.getSerializableExtra("trail", Trail::class.java)!!
 
         this.binding.trailName.text = this.trail.name
-        this.binding.trailDiff.text = this.trail.getTrailDifficulty(this.trail.difficulty)
+        this.binding.trailDiff.text = this.trail.getTrailDifficulty()
         this.binding.trailDiscription.text = this.trail.description
         this.binding.trailLen.text = this.trail.length.toString()
     }

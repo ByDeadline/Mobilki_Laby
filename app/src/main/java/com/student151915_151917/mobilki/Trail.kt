@@ -2,7 +2,23 @@ package com.student151915_151917.mobilki
 
 import java.io.Serializable
 
-class Trail(val name: String, val length: Double, val difficulty: TrailDifficulty, val description: String) : Serializable {
+data class TrailTime(var hours: Int, var minutes: Int, var seconds: Int)
+
+class TrailGlobalData {
+    companion object {
+        private var trailTimes: MutableMap<Trail, TrailTime> = mutableMapOf()
+
+        fun getTrailTime(trail: Trail): TrailTime {
+            return this.trailTimes.getOrDefault(trail, TrailTime(0,0,0))
+        }
+
+        fun saveTrailTime(trail: Trail, trailTime: TrailTime) {
+            this.trailTimes[trail] = trailTime
+        }
+    }
+}
+
+class Trail(val name: String, val length: Double, private val difficulty: TrailDifficulty, val description: String) : Serializable {
 
     private val trialDifficultyMap = mapOf(
         TrailDifficulty.Easy to "easy",
@@ -10,8 +26,8 @@ class Trail(val name: String, val length: Double, val difficulty: TrailDifficult
         TrailDifficulty.Hard to "hard"
         )
 
-    fun getTrailDifficulty(trialDifficulty: TrailDifficulty): String {
-        return this.trialDifficultyMap.getOrDefault(trialDifficulty, "unknown")
+    fun getTrailDifficulty(): String {
+        return this.trialDifficultyMap.getOrDefault(this.difficulty, "unknown")
     }
 
     fun getTrialDifficulty(trailDifficulty: String) : TrailDifficulty {
