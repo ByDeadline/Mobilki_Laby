@@ -20,15 +20,16 @@
 
     <TextView
         android:id="@+id/trailDiscription"
-        android:layout_width="304dp"
-        android:layout_height="400dp"
+        android:layout_width="326dp"
+        android:layout_height="233dp"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:textAlignment="center"/>
+        app:layout_constraintVertical_bias="0.178" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -58,5 +59,15 @@
             android:text="TextView"
             android:textAlignment="center"/>
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.student151915_151917.mobilki.StopwatchFragment"
+        android:layout_width="326dp"
+        android:layout_height="211dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trailDiscription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
