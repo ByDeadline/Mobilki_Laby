@@ -10,7 +10,7 @@ import com.student151915_151917.mobilki.databinding.ActivityMainBinding
 
 object Constants {
     fun getTrails(): List<Trail> {
-        val trails = listOf(
+        return listOf(
             Trail("Trail 1", 5.0, TrailDifficulty.Easy, "Trail 1 description"),
             Trail("Trail 2", 10.0, TrailDifficulty.Medium, "Trail 2 description"),
             Trail("Trail 3", 15.0, TrailDifficulty.Hard, "Trail 3 description"),
@@ -30,9 +30,8 @@ object Constants {
             Trail("Trail 17", 85.0, TrailDifficulty.Medium, "Trail 17 description"),
             Trail("Trail 18", 90.0, TrailDifficulty.Hard, "Trail 18 description"),
             Trail("Trail 19", 95.0, TrailDifficulty.Easy, "Trail 19 description"),
-            Trail("Trail 20", 100.0, TrailDifficulty.Medium, "Trail 20 description"),
+            Trail("Trail 20", 100.0, TrailDifficulty.Medium, "Trail 20 description")
         )
-        return trails
     }
 }
 class MainActivity : AppCompatActivity() {
