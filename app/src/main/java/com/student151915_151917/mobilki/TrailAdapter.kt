@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TrailAdapter(private val trails: List<Trail>, private val onItemClicked: (Trail) -> Unit ) : RecyclerView.Adapter<TrailAdapter.TrailViewHolder>() {
 
-    private var onClickListener: View.OnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrailViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.trail_item, parent, false)
         return TrailViewHolder(view)
