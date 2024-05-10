@@ -36,4 +36,14 @@ class TrailView : AppCompatActivity() {
         this.binding.trailDiscription.text = this.trail.description
         this.binding.trailLen.text = this.trail.length.toString()
     }
+
+    fun startClock() {
+
+    }
+    fun pauseClock() {
+
+    }
+    fun resetClock() {
+
+    }
 }
