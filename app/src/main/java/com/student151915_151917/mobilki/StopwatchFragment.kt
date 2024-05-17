@@ -9,16 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.student151915_151917.mobilki.databinding.FragmentStopwatchBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [StopwatchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StopwatchFragment : Fragment() {
     private var _binding: FragmentStopwatchBinding? = null
     private val binding get() = _binding!!
@@ -55,34 +45,41 @@ class StopwatchFragment : Fragment() {
         }
     }
 
+    private fun convertTimeToText() : String {
+        var hoursText = ""
+        var minutesText = ""
+        var secondsText = ""
+
+        hoursText = if (this.hours < 10) {
+            "0" + this.hours.toString()
+        } else {
+            this.hours.toString()
+        }
+
+        minutesText = if (this.minutes < 10) {
+            "0" + this.minutes.toString()
+        } else {
+            this.minutes.toString()
+        }
+
+        secondsText = if (this.seconds < 10) {
+            "0" + this.seconds.toString()
+        } else {
+            this.seconds.toString()
+        }
+
+        return "$hoursText:$minutesText:$secondsText"
+    }
+
     private fun oneSecond() {
         if (this.timerEnabled) {
             this.addSecond()
-            binding.stopwatch.text = this.seconds.toString()
+            binding.stopwatch.text = this.convertTimeToText()
         }
         Handler(Looper.getMainLooper()).postDelayed(::oneSecond, 1000)
     }
 
     private fun runTimer() {
         Handler(Looper.getMainLooper()).postDelayed(::oneSecond, 1000)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                StopwatchFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
     }
 }
