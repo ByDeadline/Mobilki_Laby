@@ -1,10 +1,14 @@
 package com.student151915_151917.mobilki
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.student151915_151917.mobilki.databinding.FragmentStopwatchBinding
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -16,22 +20,51 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class StopwatchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentStopwatchBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var seconds = 0
+    private var minutes = 0
+    private var hours = 0
+
+    private var timerEnabled = true
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentStopwatchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        this.runTimer()
+    }
+
+    private fun addSecond() {
+        this.seconds++
+        if (this.seconds == 60) {
+            this.seconds = 0
+            this.minutes++
+        }
+        if (this.minutes == 60) {
+            this.minutes = 0
+            this.hours++
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stopwatch, container, false)
+    private fun oneSecond() {
+        if (this.timerEnabled) {
+            this.addSecond()
+            binding.stopwatch.text = this.seconds.toString()
+        }
+        Handler(Looper.getMainLooper()).postDelayed(::oneSecond, 1000)
+    }
+
+    private fun runTimer() {
+        Handler(Looper.getMainLooper()).postDelayed(::oneSecond, 1000)
     }
 
     companion object {
