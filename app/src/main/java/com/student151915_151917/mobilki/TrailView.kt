@@ -10,9 +10,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.student151915_151917.mobilki.databinding.ActivityTrailViewBinding
 
-class TrailView : AppCompatActivity() {
+class TrailView : AppCompatActivity(), StopwatchInterface {
     private lateinit var trail: Trail
     private lateinit var binding: ActivityTrailViewBinding
+    private lateinit var trailTime: TrailTime
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +37,25 @@ class TrailView : AppCompatActivity() {
         this.binding.trailDiff.text = this.trail.getTrailDifficulty()
         this.binding.trailDiscription.text = this.trail.description
         this.binding.trailLen.text = this.trail.length.toString()
+
+        this.trailTime = TrailGlobalData.getTrailTime(trail)
+        this.setupStopwatchFragment()
     }
 
-    fun startClock() {
+    private fun setupStopwatchFragment() {
+        val bundle = Bundle()
+        bundle.putSerializable("trailTime", this.trailTime)
 
+        val fragment = StopwatchFragment()
+        fragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment).commit()
     }
-    fun pauseClock() {
 
-    }
-    fun resetClock() {
-
+    override fun saveStopwatch(hours: Int, minutes: Int, seconds: Int) {
+        this.trailTime.hours = hours
+        this.trailTime.minutes = minutes
+        this.trailTime.seconds = seconds
+        TrailGlobalData.saveTrailTime(this.trail, this.trailTime)
     }
 }

@@ -17,7 +17,9 @@ class StopwatchFragment : Fragment() {
     private var minutes = 0
     private var hours = 0
 
-    private var timerEnabled = true
+    private var timerEnabled = false
+
+    private lateinit var stopwatchActivity: StopwatchInterface
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,45 @@ class StopwatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        this.stopwatchActivity = activity as StopwatchInterface
+        this.loadSentData()
         this.runTimer()
+        this.setOnClick()
+    }
+
+    private fun setOnClick() {
+        binding.startButton.setOnClickListener { start() }
+        binding.pauseButton.setOnClickListener { pause() }
+        binding.resetButton.setOnClickListener { reset() }
+    }
+
+    private fun start() {
+        this.timerEnabled = true
+    }
+
+    private fun pause () {
+        this.timerEnabled = false
+        this.stopwatchActivity.saveStopwatch(this.hours, this.minutes, this.seconds)
+    }
+
+    private fun reset() {
+        this.timerEnabled = false
+        this.hours = 0
+        this.minutes = 0
+        this.seconds = 0
+        this.binding.stopwatch.text = this.convertTimeToText()
+        this.stopwatchActivity.saveStopwatch(this.hours, this.minutes, this.seconds)
+    }
+
+    private fun loadSentData() {
+        val sentData = arguments?.getSerializable("trailTime", TrailTime::class.java)
+        if (sentData != null) {
+            this.seconds = sentData.seconds
+            this.minutes = sentData.minutes
+            this.hours = sentData.hours
+
+            this.binding.stopwatch.text = this.convertTimeToText()
+        }
     }
 
     private fun addSecond() {
