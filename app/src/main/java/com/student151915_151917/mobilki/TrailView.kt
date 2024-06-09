@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,9 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
             insets
 
         }
+        val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
         binding.fab.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivity(cameraIntent)
@@ -46,6 +50,10 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
 
         this.trailTime = TrailGlobalData.getTrailTime(trail)
         this.setupStopwatchFragment()
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setLogo(this.trail.imageSource)
+        supportActionBar?.setTitle(R.string.app_name)
     }
 
     private fun setupStopwatchFragment() {
