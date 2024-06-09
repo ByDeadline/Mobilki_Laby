@@ -34,7 +34,6 @@ class Trail(val name: String, val length: Double, private val difficulty: TrailD
 
     private val trialDifficultyMap = mapOf(
         TrailDifficulty.Easy to "easy",
-        TrailDifficulty.Medium to "medium",
         TrailDifficulty.Hard to "hard"
         )
 
@@ -42,20 +41,14 @@ class Trail(val name: String, val length: Double, private val difficulty: TrailD
         return this.trialDifficultyMap.getOrDefault(this.difficulty, "unknown")
     }
 
-    fun getTrialDifficulty(trailDifficulty: String) : TrailDifficulty {
-        for (trial in this.trialDifficultyMap) {
-            if (trial.value == trailDifficulty) {
-                return trial.key
-            }
-        }
-        return TrailDifficulty.Unknown
+    fun getTrialDifficultyEnum() : TrailDifficulty {
+        return this.difficulty
     }
 
 }
 
 enum class TrailDifficulty {
     Easy,
-    Medium,
     Hard,
     Unknown
 }
