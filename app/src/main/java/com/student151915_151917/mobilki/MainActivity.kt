@@ -1,15 +1,14 @@
 package com.student151915_151917.mobilki
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toolbar
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.student151915_151917.mobilki.databinding.ActivityMainBinding
@@ -46,13 +45,13 @@ class MainActivity : AppCompatActivity() {
     private val trails = Constants.getTrails()
 
     private enum class Tabs {
-        All,
+        Home,
         Easy,
         Hard
     }
 
     private val tabs = mapOf(
-            0 to Tabs.All,
+            0 to Tabs.Home,
             1 to Tabs.Easy,
             2 to Tabs.Hard
     )
@@ -82,15 +81,21 @@ class MainActivity : AppCompatActivity() {
         binding.trailsList.layoutManager = GridLayoutManager(applicationContext, 2)
     }
 
-    private fun allTab() {
+    private fun homeTab() {
+        this.binding.helloLayout.visibility = VISIBLE
+        this.binding.trailsList.visibility = GONE
         this.changeAdapter(this.trails)
     }
 
     private fun easyTab() {
+        this.binding.helloLayout.visibility = GONE
+        this.binding.trailsList.visibility = VISIBLE
         this.changeAdapter(this.trails.filter { trail: Trail -> trail.getTrialDifficultyEnum() == TrailDifficulty.Easy })
     }
 
     private fun hardTab() {
+        this.binding.helloLayout.visibility = GONE
+        this.binding.trailsList.visibility = VISIBLE
         this.changeAdapter(this.trails.filter { trail: Trail -> trail.getTrialDifficultyEnum() == TrailDifficulty.Hard })
     }
 
@@ -101,10 +106,10 @@ class MainActivity : AppCompatActivity() {
                 // Handle tab selected
                 val position = thisActivity.tabs[tab.position]
                 when (position) {
-                    Tabs.All -> thisActivity.allTab()
+                    Tabs.Home -> thisActivity.homeTab()
                     Tabs.Easy -> thisActivity.easyTab()
                     Tabs.Hard -> thisActivity.hardTab()
-                    null -> thisActivity.allTab()
+                    null -> thisActivity.homeTab()
                 }
 
                 // You can perform actions based on the tab position
