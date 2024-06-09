@@ -63,7 +63,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="This is a trail app"
+            android:padding="10dp"
+            android:text="In this app you can check different trails, categorized by their difficulty. In each trail you can measure your time and take photos."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
