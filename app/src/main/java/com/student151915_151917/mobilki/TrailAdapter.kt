@@ -1,9 +1,9 @@
 package com.student151915_151917.mobilki
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -23,6 +23,7 @@ class TrailAdapter(private val trails: List<Trail>, private val onItemClicked: (
         holder.name.text = trail.name
         holder.length.text = trail.length.toString()
         holder.difficulty.text = trail.getTrailDifficulty()
+        holder.imageView.setImageResource(trail.imageSource)
         holder.itemView.setOnClickListener {
             onItemClicked(trail)
             }
@@ -31,6 +32,7 @@ class TrailAdapter(private val trails: List<Trail>, private val onItemClicked: (
         val name: TextView = itemView.findViewById(R.id.TrailName)
         val length: TextView = itemView.findViewById(R.id.TrailLen)
         val difficulty: TextView = itemView.findViewById(R.id.TrailDiff)
+        val imageView: ImageView = itemView.findViewById((R.id.trailImage))
     }
 
 }

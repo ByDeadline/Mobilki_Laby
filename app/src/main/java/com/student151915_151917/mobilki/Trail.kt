@@ -23,7 +23,7 @@ class TrailGlobalData {
     }
 }
 
-class Trail(val name: String, val length: Double, private val difficulty: TrailDifficulty, val description: String) : Serializable {
+class Trail(val name: String, val length: Double, private val difficulty: TrailDifficulty, val description: String, val imageSource: Int) : Serializable {
 
     var id : Int = -1
 
