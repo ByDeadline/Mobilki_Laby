@@ -24,30 +24,40 @@
             android:id="@+id/TrailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:gravity="center"
+            android:orientation="vertical"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="trailImage"
+                app:srcCompat="@drawable/gorski_szlak"
+                tools:srcCompat="@tools:sample/avatars" />
+
             <TextView
                 android:id="@+id/TrailName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/TrailLen"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/TrailDiff"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView" />
