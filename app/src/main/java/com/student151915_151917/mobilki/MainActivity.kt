@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -41,7 +42,7 @@ object Constants {
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    val trails = Constants.getTrails()
+    private val trails = Constants.getTrails()
 
     private enum class Tabs {
         All,
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAdapter() {
         this.changeAdapter(this.trails)
-        binding.trailsList.layoutManager = LinearLayoutManager(applicationContext)
+        binding.trailsList.layoutManager = GridLayoutManager(applicationContext, 2)
     }
 
     private fun allTab() {
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun trailOnClick(trail : Trail){
-        val intent = Intent(applicationContext,TrailView::class.java)
+        val intent = Intent(applicationContext, TrailView::class.java)
         intent.putExtra("trail",trail)
         startActivity(intent)
     }
