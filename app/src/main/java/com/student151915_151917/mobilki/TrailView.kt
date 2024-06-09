@@ -1,13 +1,16 @@
 package com.student151915_151917.mobilki
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.student151915_151917.mobilki.databinding.ActivityTrailViewBinding
 
 class TrailView : AppCompatActivity(), StopwatchInterface {
@@ -26,7 +29,10 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
             insets
 
         }
-
+        binding.fab.setOnClickListener {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivity(cameraIntent)
+        }
         fillData()
     }
 
@@ -58,4 +64,5 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
         this.trailTime.seconds = seconds
         TrailGlobalData.saveTrailTime(this.trail, this.trailTime)
     }
+
 }

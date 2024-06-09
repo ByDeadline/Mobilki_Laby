@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             2 to Tabs.Hard
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

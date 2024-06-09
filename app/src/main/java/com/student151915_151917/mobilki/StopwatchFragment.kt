@@ -21,6 +21,14 @@ class StopwatchFragment : Fragment() {
 
     private lateinit var stopwatchActivity: StopwatchInterface
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("seconds", seconds)
+        outState.putInt("minutes", minutes)
+        outState.putInt("hours", hours)
+        outState.putBoolean("timerEnabled", timerEnabled)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +39,13 @@ class StopwatchFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState != null) {
+                    this.seconds = savedInstanceState.getInt("seconds")
+                    this.minutes = savedInstanceState.getInt("minutes")
+                    this.hours = savedInstanceState.getInt("hours")
+                    this.timerEnabled = savedInstanceState.getBoolean("timerEnabled")
+                }
+
 
         this.stopwatchActivity = activity as StopwatchInterface
         this.loadSentData()
