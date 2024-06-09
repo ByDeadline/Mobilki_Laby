@@ -29,16 +29,9 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         this.binding = ActivityTrailViewBinding.inflate(layoutInflater)
+
         drawerLayout = binding.drawerLayout
         navigationView = binding.navView
-
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-
-        }
         val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
@@ -48,28 +41,17 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle item selection here
-            when (menuItem.itemId) {
-                R.id.nav_home -> {
-                    // Handle the home action
-                }
-                R.id.nav_gallery -> {
-                    // Handle the gallery action
-                }
-                R.id.nav_slideshow -> {
-                    // Handle the slideshow action
-                }
-            }
-
-            // Close the drawer after selection
-            drawerLayout.closeDrawer(GravityCompat.START)
-            true
-        }
 
         binding.fab.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivity(cameraIntent)
+        }
+        setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+
         }
         fillData()
     }
@@ -97,7 +79,9 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
         this.binding.trailLen.text = this.trail.length.toString()
 
         this.trailTime = TrailGlobalData.getTrailTime(trail)
+
         this.setupStopwatchFragment()
+
         supportActionBar?.apply {
             setDisplayUseLogoEnabled(true)  // Enables the logo display
             setLogo(this@TrailView.trail.imageSource)  // Sets the logo
@@ -112,8 +96,7 @@ class TrailView : AppCompatActivity(), StopwatchInterface {
 
         val fragment = StopwatchFragment()
         fragment.arguments = bundle
-
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id. fragmentContainerView, fragment).commit()
     }
 
     override fun saveStopwatch(hours: Int, minutes: Int, seconds: Int) {

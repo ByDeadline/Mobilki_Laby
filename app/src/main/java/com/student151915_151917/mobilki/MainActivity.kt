@@ -12,31 +12,88 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.student151915_151917.mobilki.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 object Constants {
+    fun getRandomImageSource(): Int {
+        return if (Random.nextBoolean()) {
+            R.drawable.gorski_szlak
+        } else {
+            R.drawable.gorski_szlak2
+        }
+    }
     fun getTrails(): List<Trail> {
         return listOf(
-            Trail("Trail 1", 5.0, TrailDifficulty.Easy, "Trail 1 description", com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 2", 10.0, TrailDifficulty.Hard, "Trail 2 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 3", 15.0, TrailDifficulty.Hard, "Trail 3 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 4", 20.0, TrailDifficulty.Easy, "Trail 4 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 5", 25.0, TrailDifficulty.Hard, "Trail 5 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 6", 30.0, TrailDifficulty.Hard, "Trail 6 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 7", 35.0, TrailDifficulty.Easy, "Trail 7 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 8", 40.0, TrailDifficulty.Hard, "Trail 8 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 9", 45.0, TrailDifficulty.Hard, "Trail 9 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 10", 50.0, TrailDifficulty.Easy, "Trail 10 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 11", 55.0, TrailDifficulty.Hard, "Trail 11 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 12", 60.0, TrailDifficulty.Hard, "Trail 12 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 13", 65.0, TrailDifficulty.Easy, "Trail 13 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 14", 70.0, TrailDifficulty.Hard, "Trail 14 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 15", 75.0, TrailDifficulty.Hard, "Trail 15 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 16", 80.0, TrailDifficulty.Easy, "Trail 16 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 17", 85.0, TrailDifficulty.Hard, "Trail 17 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 18", 90.0, TrailDifficulty.Hard, "Trail 18 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2),
-            Trail("Trail 19", 95.0, TrailDifficulty.Easy, "Trail 19 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak),
-            Trail("Trail 20", 100.0, TrailDifficulty.Hard, "Trail 20 description",com.student151915_151917.mobilki.R.drawable.gorski_szlak2)
-        )
+            Trail(
+            name = "Szlak Orlich Gniazd",
+            length = 164.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny wiodący przez ruiny średniowiecznych zamków i warowni na Wyżynie Krakowsko-Częstochowskiej.",
+            imageSource = getRandomImageSource())
+        ,
+        Trail(
+            name = "Główny Szlak Beskidzki",
+            length = 496.0,
+            difficulty = TrailDifficulty.Hard,
+            description = "Najdłuższy pieszy szlak w polskich górach, biegnący przez Beskidy od Ustronia do Wołosatego.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Piastowski",
+            length = 146.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny prowadzący przez zamki i pałace Dolnego Śląska, związane z dynastią Piastów.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Wokół Tatr",
+            length = 250.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak rowerowy prowadzący wokół Tatr, umożliwiający podziwianie pięknych widoków i krajobrazów.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Główny Szlak Sudecki",
+            length = 440.0,
+            difficulty = TrailDifficulty.Hard,
+            description = "Szlak turystyczny biegnący przez Sudety, od Świeradowa-Zdroju do Prudnika.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Nadmorski",
+            length = 370.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny biegnący wzdłuż wybrzeża Bałtyku, od Świnoujścia do Helu.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Kopernikowski",
+            length = 238.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny prowadzący przez miejsca związane z życiem i działalnością Mikołaja Kopernika.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Bursztynowy",
+            length = 450.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny biegnący wzdłuż historycznego traktu handlowego, łączącego wybrzeże Bałtyku z południem Europy.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Papieski",
+            length = 120.0,
+            difficulty = TrailDifficulty.Easy,
+            description = "Szlak turystyczny upamiętniający wędrówki Karola Wojtyły po polskich górach.",
+            imageSource = getRandomImageSource()
+        ),
+        Trail(
+            name = "Szlak Świętego Jakuba",
+            length = 640.0,
+            difficulty = TrailDifficulty.Hard,
+            description = "Polska część europejskiego szlaku pielgrzymkowego do Santiago de Compostela.",
+            imageSource = getRandomImageSource()
+        ))
     }
 }
 class MainActivity : AppCompatActivity() {
